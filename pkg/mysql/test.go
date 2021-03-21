@@ -7,10 +7,11 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 
-	"github.com/tanimutomo/gorm-txdb/config"
+	"github.com/DATA-DOG/go-txdb"
+	"github.com/tanimutomo/gorm-txdb/pkg/config"
 )
 
-func New() (*gorm.DB, error) {
+func NewTest(name string) (*gorm.DB, error) {
 	dsn := fmt.Sprintf(
 		"%s:%s@(%s:%s)/%s?charset=utf8mb4&parseTime=true",
 		config.RDS.User, config.RDS.Password,
@@ -18,7 +19,13 @@ func New() (*gorm.DB, error) {
 		config.RDS.Database,
 	)
 
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
+	txdb.Register(name, "mysql", dsn)
+	dialector := mysql.New(mysql.Config{
+		DriverName: name,
+		DSN:        dsn,
+	})
+
+	db, err := gorm.Open(dialector, &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
 	if err != nil {

@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"github.com/tanimutomo/gorm-txdb/entity"
+	"github.com/tanimutomo/gorm-txdb/pkg/entity"
 	"gorm.io/gorm"
 )
 

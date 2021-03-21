@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/tanimutomo/gorm-txdb/entity"
-	"github.com/tanimutomo/gorm-txdb/mysql"
+	"github.com/tanimutomo/gorm-txdb/pkg/entity"
+	"github.com/tanimutomo/gorm-txdb/pkg/mysql"
 )
 
 func TestUserDao_Get(t *testing.T) {
