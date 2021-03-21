@@ -22,3 +22,8 @@ func (u User) Get(id int64) (*entity.User, error) {
 	}
 	return &e, nil
 }
+
+func (u User) Create(name string) error {
+	e := entity.User{Name: name}
+	return u.db.Create(&e).Error
+}
