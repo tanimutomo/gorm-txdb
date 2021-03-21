@@ -16,14 +16,14 @@ func TestUserDao_Get(t *testing.T) {
 
 	tests := []struct {
 		name   string
-		data   []interface{}
+		seed   []interface{}
 		give   int64
 		wantID int64
 		err    bool
 	}{
 		{
 			name: "success",
-			data: []interface{}{
+			seed: []interface{}{
 				&entity.User{ID: int64(1), Name: "foo"},
 			},
 			give:   int64(1),
@@ -44,8 +44,8 @@ func TestUserDao_Get(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			for _, d := range tt.data {
-				if err := db.Create(d).Error; err != nil {
+			for _, s := range tt.seed {
+				if err := db.Create(s).Error; err != nil {
 					t.Fatal(err)
 				}
 			}
