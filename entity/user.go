@@ -1,9 +1,11 @@
 package entity
 
-import "time"
+import (
+	"time"
+)
 
 type User struct {
-	ID        int64     `gorm:"column:id"`
+	ID        int64     `gorm:"column:id;primarykey;autoincrement"`
 	Name      string    `gorm:"column:name"`
 	CreatedAt time.Time `gorm:"column:created_at"`
 	UpdatedAt time.Time `gorm:"column:updated_at"`

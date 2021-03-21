@@ -16,9 +16,9 @@ func NewUser(db *gorm.DB) User {
 }
 
 func (u User) Get(id int64) (*entity.User, error) {
-	var e *entity.User
-	if err := u.db.First(e, id).Error; err != nil {
+	var e entity.User
+	if err := u.db.First(&e, id).Error; err != nil {
 		return nil, err
 	}
-	return e, nil
+	return &e, nil
 }
