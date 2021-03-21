@@ -17,13 +17,7 @@ func New() (*gorm.DB, error) {
 		config.RDS.Host, config.RDS.Port,
 		config.RDS.Database,
 	)
-
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
+	return gorm.Open(mysql.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
-	if err != nil {
-		return nil, err
-	}
-
-	return db, nil
 }
